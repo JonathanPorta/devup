@@ -5,6 +5,7 @@ head
   meta(http-equiv='X-UA-Compatible', content='IE=edge')
   meta(name='description', content='')
   meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no')
+  link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
   link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic')
   link(rel='stylesheet', href='./vendor.css')
 
@@ -17,8 +18,50 @@ head
     display: none !important;
     }
 
-  body(ng-app='devup', ng-cloak='')
-    h2 Hello world!
+  body(ng-app='devup', ng-cloak='', ng-controller='ProjectOverview')
+    md-toolbar.demo-toolbar.md-primary
+      .md-toolbar-tools
+          h3.ng-binding Devup: Get going fast!
+
+    .menuBardemoBasicUsage
+      md-toolbar.md-menu-toolbar
+        div(layout="row")
+          md-toolbar-filler(layout, layout-align="center center")
+            md-icon add
+          div(flex='50')
+            md-content(md-padding)
+              form(name='projectSelector')
+                md-input-container.md-block
+                  md-select(name='project', required='', ng-model='project.name', ng-change='setProject()')
+                    md-option(value='') Create a new project
+                    md-option(ng-repeat='proj in allProjects') {{ proj.name }}
+
+              md-menu-bar
+                md-menu
+                  button(ng-click='$mdOpenMenu()') Add container
+                  md-menu-content
+                    md-menu-item
+                      md-button(ng-click="ctrl.sampleAction('share', $event)") Share...
+                md-menu
+                  button(ng-click='$mdOpenMenu()') Logs
+                  md-menu-content
+                    md-menu-item
+                      md-button(ng-click="ctrl.sampleAction('share', $event)") Share...
+
+    div(layout='row')
+      md-content(flex, ng-controller='ContainersList')
+          md-list
+            md-list-item.md-2-line(md-border-bottom, ng-repeat='container in containers', ng-click='setContainer(container, $event)')
+              .md-list-item-text
+                h3 {{ container.name }}
+                p {{ container.description }}
+
+      md-content(flex, ng-controller="ContainerDetail")
+        md-tabs(md-dynamic-height, md-border-bottom)
+          md-tab(label="one")
+            md-content(class="md-padding")
+              h1.md-display-2 {{ container.name }}
+              p {{ container.description }}
 
     // Leave at end of body
     script(src='./angular.js')

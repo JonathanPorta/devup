@@ -60,9 +60,9 @@ module.exports = (grunt)->
       scripts:
         files: [
           'Gruntfile.coffee' # Oh! How metta!
-          'app/modules/**/*.jade'
-          'app/modules/**/*.js'
-          'app/modules/**/*.less'
+          'app/**/*.jade'
+          'app/**/*.js'
+          'app/**/*.less'
           'app/index.less'
           'app/index.jade'
           'app/index.js'

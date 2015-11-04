@@ -5,7 +5,12 @@
       // Add router here if we need one
     });
 
-    // Require app's modules
-    // require("./modules/")
+    // ViewControllers
+    require("./controllers/project-overview.js")
+    require("./controllers/containers-list.js")
+    require("./controllers/container-detail.js")
+
+    // Services
+    require("./services/projects.js")
 
 })();
